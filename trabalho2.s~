@@ -1,167 +1,135 @@
 .section .data
 
-#31-01-2016
+#02-03-2016
 
-mensagem_begin: .asciz "\nPrograma Iniciado: Multiplicação de duas matrizes\n"
+mensagem_begin:    		.asciz "\nPrograma Iniciado: Multiplicação de duas matrizes\n"
+mensagem_valor_m:  		.asciz "\nDigite o valor de M: "
+mensagem_valor_n:  		.asciz "\nDigite o valor de N: "
+mensagem_valor_p:  		.asciz "\nDigite o valor de P: "
+mensagem_matriz_a: 		.asciz "\nMatriz A: (%d x %d)\n"
+mensagem_matriz_b:     		.asciz "Matriz B: (%d x %d)\n"
+sucesso_multiplicacao: 		.asciz "\nA multiplicação foi realizada com sucesso!\n"
+mensagem_matriz_preenchida_a: 	.asciz "\nMatriz preenchida (A)\n"
+mensagem_matriz_preenchida_b: 	.asciz "\nMatriz preenchida (B)\n"
+mensagem_matriz_preenchida_c: 	.asciz "\nMatriz preenchida (C)\n"
 
-mensagem_valor_m: .asciz "\nDigite o valor de M: "
-mensagem_valor_n: .asciz "\nDigite o valor de N: "
-mensagem_valor_p: .asciz "\nDigite o valor de P: "
-mensagem_matriz_a: .asciz "\nMatriz A: (%d x %d)\n"
-mensagem_matriz_b: .asciz "Matriz B: (%d x %d)\n"
-sucesso_multiplicacao: .asciz "\nA multiplicação foi realizada com sucesso!\n"
+mostra_elemento: 	.asciz 	"%lf\t"
+mostra_elemento2: 	.asciz 	"%d\t"
+quebra_linha: 		.asciz "\n"
 
-erro: .asciz "\n\nteste\n\n"
+formato1: 		.asciz "%lf"
+formato2: 		.asciz "%d"
 
-mensagem_matriz_preenchida_a: .asciz "\nMatriz preenchida (A)\n"
-mensagem_matriz_preenchida_b: .asciz "\nMatriz preenchida (B)\n"
-mensagem_matriz_preenchida_c: .asciz "\nMatriz preenchida (C)\n"
 
-mostra_elemento: .asciz "%lf\t"
-mostra_elemento2: .asciz "%d\t"
+nomearqout: 	.double 0
+valor: 		.double 0
 
-mensagem_elemento_a: .asciz "\nElemento [%d][%d] (A): " 
-mensagem_elemento_b: .asciz "\nElemento [%d][%d] (B): "
-
-quebra_linha: .asciz "\n"
+valor_m: 	.int	0
+valor_n: 	.int 	0
+valor_p: 	.int 	0
 
 matriz_a: .space 1800
-	tam_matriz_a: .int 0
+	tam_matriz_a: 	 .int 0
 	constante_salto: .int 0
+
 matriz_b: .space 1800
-	tam_matriz_b: .int 0
+	tam_matriz_b: 	.int 0
 	salto_matriz_b: .int 0
+
 matriz_c: .space 1800
 	tam_matriz_c: .int 0
-	acumulador: .double 0
 
-valor_m: .int 0
-valor_n: .int 0
-valor_p: .int 0
-
-num_aux: .space 8 #usado para repassar o valor no preenchimento das matrizes
-lixo:    .space 8 #usado para repassar o valor no preenchimento das matrizes
-
-formato1: .asciz "%lf"
-formato2: .asciz "%d"
-
-
-outvid: .ascii "\nMsg teste impressa no video usando chamada write()\n"
-fimoutvid:
-
-pedealgo: .ascii "\nDigite algo pelo teclado: "
-fimpedealgo:
-
-strarqout: .ascii "\nMsg teste impressa no arquivo usando chamada write()\n"
-fimstrarqout:
-
-pedearqin: .ascii "\nEntre com o nome do arquivo de entrada\n> "
-fimpedearqin:
-
-pedearqout: .ascii "\nEntre com o nome do arquivo de saida\n> "
-fimpedearqout:
-
-mostrain: .ascii "\nEntrada Original em Caracteres Suja = "
-fimmostrain:
-
-mostrainlimpa: .ascii "\nEntrada Original em Caracteres Limpa = "
-fimmostrainlimpa:
-
-buffer: .ascii "12345678901234567890123456789012345678901234567890"
-fimbuffer: 
-
-pergunta: .asciz "\n\nConverter a entrada para:\n<1> Inteiro\n<2> Real\n > "
-
-mostratam: .asciz "\n\nTamanho da Entrada Valida: %d\n"
-
-mostraintoint: .asciz "\nEntrada Convertida para Numero Inteiro = %d\n"
-
-mostrastrarqin: .asciz "\nString Lida: %s\n"
-
-mostraintofloat: .asciz "\nEntrada Convertida para Numero PF = %.2lf\n"
-
-mostranomearq: .asciz "\nNome do Arquivo: %s\n"
-
-msgfim: .asciz "\nAll is done!"
-	.equ tamoutvid, fimoutvid-outvid
-	.equ tamstrarqout, fimstrarqout-strarqout
-	.equ tampedearqin, fimpedearqin-pedearqin
-	.equ tampedearqout, fimpedearqout-pedearqout
-	.equ tampedealgo, fimpedealgo-pedealgo
-	.equ tambuffer, fimbuffer-buffer
-	.equ tammostrain, fimmostrain-mostrain
-	.equ tammostrainlimpa, fimmostrainlimpa-mostrainlimpa
-
-
-
-
-#asdf
-
-varx:								.double 1.5
-
-var:								.int  0
-lixoDaFpu: .double    0.0
-jumpA:     .int 	0
-jumpB:     .int 	0
-
-SYS_EXIT:   .int 1
-SYS_FORK:   .int 2
-SYS_READ:   .int 3
-SYS_WRITE:  .int 4
-SYS_OPEN:   .int 5
-SYS_CLOSE:  .int 6
-SYS_CREATE: .int 8
-
-STD_OUT: .int 1
-STD_IN: .int 2
-
-O_RDONLY: .int 0x0000
-O_WRONLY: .int 0x0001
-O_RDWR:	  .int 0x0002
-O_CREATE: .int 0x0040
-O_EXCL:   .int 0x0080
-O_APPEND: .int 0x0400
-O_TRUNC:  .int 0x0200
-
-S_IRWXU:						.int 0x01C0
-S_IRUSR:						.int 0x0100
-S_IWUSR:						.int 0x0080
-S_IXUSR:						.int 0x0040
-S_IRWXG:						.int 0x0038
-S_IRGRP:						.int 0x0020
-S_IWGRP:						.int 0x0010
-S_IXGRP:						.int 0x0008
-S_IRWXO:						.int 0x0007
-S_IROTH:						.int 0x0004
-S_IWOTH:						.int 0x0002
-S_IXOTH:						.int 0x0001
-S_NADA:							.int 0x0000
+lixo:    .space 8 #lixo retirado do topo da PFU
 
 arqEntrda:	.asciz	"mab.txt"
 
-contLinha:	.space 20
-valorAsc:       .space 10
-tamarqin:	.int 80
-mostrastr:	.asciz " %s"
-mostrabyte:	.asciz " %c"
+
+outvid:    .ascii "\nMsg teste impressa no video usando chamada write()\n"
+fimoutvid:
+
+pedealgo:  .ascii "\nDigite algo pelo teclado: "
+fimpedealgo:
+
+strarqout: .ascii "\n"
+fimstrarqout:
+
+pedearqin: 	.ascii "\nEntre com o nome do arquivo de entrada\n> "
+fimpedearqin:
+
+pedearqout: 	.ascii "\nEntre com o nome do arquivo de saida\n> "
+fimpedearqout:
+
+mostrain: 	.ascii "\nEntrada Original em Caracteres Suja = "
+fimmostrain:
+
+mostrainlimpa:  .ascii "\nEntrada Original em Caracteres Limpa = "
+fimmostrainlimpa:
+
+buffer: 	.ascii "12345678901234567890123456789012345678901234567890"
+fimbuffer: 
+
+mostratam: 	.asciz "\n\nTamanho da Entrada Valida: %d\n"
+mostranomearq:  .asciz "\nNome do Arquivo: %s\n"
 
 
-enter: .byte 10
-return: .byte 13
-NULL: .byte 0
-espaco: .byte ' '
-formato: .asciz "%d"
-pulalin: .asciz "\n"
+msgfim: 	.asciz "\nAll is done!"
+			.equ tamoutvid, fimoutvid-outvid
+			.equ tamstrarqout, fimstrarqout-strarqout
+			.equ tampedearqin, fimpedearqin-pedearqin
+			.equ tampedearqout, fimpedearqout-pedearqout
+			.equ tampedealgo, fimpedealgo-pedealgo
+			.equ tambuffer, fimbuffer-buffer
+			.equ tammostrain, fimmostrain-mostrain
+			.equ tammostrainlimpa, fimmostrainlimpa-mostrainlimpa
+
+STD_OUT: .int 1
+STD_IN:  .int 2
+
+SYS_EXIT:   	.int 1
+SYS_FORK:   	.int 2
+SYS_READ:   	.int 3
+SYS_WRITE:  	.int 4
+SYS_OPEN:   	.int 5
+SYS_CLOSE:  	.int 6
+SYS_CREATE: 	.int 8
 
 
-arqSaida:     .asciz "resultado.txt"
+O_RDONLY: 	.int 0x0000
+O_WRONLY: 	.int 0x0001
+O_RDWR:	  	.int 0x0002
+O_CREATE: 	.int 0x0040
+O_EXCL:   	.int 0x0080
+O_APPEND: 	.int 0x0400
+O_TRUNC:  	.int 0x0200
 
+S_IRWXU:	.int 0x01C0
+S_IRUSR:	.int 0x0100
+S_IWUSR:	.int 0x0080
+S_IXUSR:	.int 0x0040
+S_IRWXG:	.int 0x0038
+S_IRGRP:	.int 0x0020
+S_IWGRP:	.int 0x0010
+S_IXGRP:	.int 0x0008
+S_IRWXO:	.int 0x0007
+S_IROTH:	.int 0x0004
+S_IWOTH:	.int 0x0002
+S_IXOTH:	.int 0x0001
+S_NADA:		.int 0x0000
+
+
+contLinha:	  .space 20
+valorAsc:         .space 10
+enter: 		  .byte 10
+NULL: 		  .byte 0
+espaco: 	  .byte ' '
+formato: 	  .asciz "%d"
+pulalin: 	  .asciz "\n"
 tabulacaoarquivo: .asciz "\t"
-ponteiro:  .asciz  ""
-#asdf
+ponteiro:  	  .asciz  ""
 
 
 .section .text
+
 .globl _start
 
 _start:
@@ -266,22 +234,22 @@ calculaQtdeElementosB:
 	movl $1, %ebx
 	movl $1, %edx
 
-learquivo:
-
+leArquivo:
 	movl SYS_OPEN, %eax
 	movl $arqEntrda, %ebx
 	movl O_RDONLY, %ecx
 	int  $0x80
 
-  movl tam_matriz_a,%ecx
+  	movl tam_matriz_a,%ecx
  	movl	$matriz_a, %edi
 
-  LeElemento:
-  push %ecx                 
-  movl $valorAsc,%esi
-	LEITURA:
-  push %eax                 
-  push %esi                 
+leNum:
+	push %ecx                 
+	movl $valorAsc,%esi
+
+leitura:
+  	push %eax                 
+  	push %esi                 
 	movl %eax, %ebx
 	movl $3, %eax
 	movl $contLinha, %ecx
@@ -290,51 +258,52 @@ learquivo:
 	int  $0x80
 	pop %esi
 
-  movb contLinha, %al
-  movb %al,(%esi)
-  incl %esi
-  pop %eax
-  cmpb $0x0A, contLinha
-  je CONTINUA1
+	movb contLinha, %al
+	movb %al,(%esi)
+	incl %esi
+	pop %eax
+	cmpb $0x0A, contLinha
+	je continuacao_leitura1
 
-CONTINUA:
-  cmpb $0x20, contLinha
-	jne LEITURA
+continuacao_leitura:
+  	cmpb $0x20, contLinha
+	jne leitura
 
-CONTINUA1:
+continuacao_leitura1:
 	push %eax                 
 	movb $0x00,(%esi)
-  push $valorAsc            
-  call atof
-  addl $4,%esp
+  	push $valorAsc            
+  	call atof
+  	addl $4,%esp
 
-  fstpl (%edi)
-  addl	$8, %edi
+	fstpl (%edi)
+	addl $8, %edi
 
-  pop %eax
-  pop %ecx
+	pop %eax
+	pop %ecx
 
-  loop LeElemento
+  	loop leNum
 
-  pushl %eax
-  movl 	%eax, %ebx
-  movl	$3, %eax
-  movl	$contLinha, %ecx
-  movl	$1, %edx
+  	pushl %eax
+  	movl %eax, %ebx
+  	movl $3, %eax
+  	movl $contLinha, %ecx
+  	movl $1, %edx
 
-  int $0x80
+  	int $0x80
 
-  pop %eax
+  	pop %eax
 
-  movl tam_matriz_b, %ecx
-  movl	$matriz_b, %edi
+  	movl tam_matriz_b, %ecx
+  	movl $matriz_b, %edi
 
-  LeElementoB:
-  push %ecx                 
-  movl $valorAsc,%esi
-	LEITURAB:
-  push %eax                 
-  push %esi                 
+leNumB:
+  	push %ecx                 
+  	movl $valorAsc,%esi
+
+leituraB:
+  	push %eax                 
+  	push %esi                 
 	movl %eax, %ebx
 	movl $3, %eax
 	movl $contLinha, %ecx
@@ -343,39 +312,38 @@ CONTINUA1:
 	int  $0x80
 	pop %esi								  
 
-  movb contLinha, %al
-  movb %al,(%esi)
-  incl %esi
-  pop %eax
-  cmpb $0x0A, contLinha
-  je CONTINUA1B
+  	movb contLinha, %al
+	movb %al,(%esi)
+	incl %esi
+	pop %eax
+	cmpb $0x0A, contLinha
+	je continuacao_leitura1B
 
-CONTINUAB:
-  cmpb $0x20, contLinha
-	jne LEITURAB
+continuacao_leituraB:
+	cmpb $0x20, contLinha
+	jne leituraB
 
-  CONTINUA1B:
+continuacao_leitura1B:
 	push %eax                 
 	movb $0x00,(%esi)
-  push $valorAsc            
-  call atof
-  addl $4,%esp
+  	push $valorAsc            
+  	call atof
+  	addl $4,%esp
 
-  fstpl (%edi)
-  addl	$8, %edi
+  	fstpl (%edi)
+  	addl	$8, %edi
 
-  pop %eax
-  pop %ecx
+  	pop %eax
+  	pop %ecx
 
-  loop LeElementoB
+  	loop leNumB
 
-FIM:
+fimLeitura:
 	movl SYS_CLOSE, %eax
-
 	int  $0x80
 
 mostravetA:
-	popl %edi #função auxiliar para mostrar matriz A - não essencial
+	popl %edi
 	popl %ecx
 	pushl $mensagem_matriz_preenchida_a
 	call printf
@@ -417,7 +385,7 @@ mostranumA:
 	loop mostranumA
 
 mostravetB:
-	popl %edi #função auxiliar para mostrar matriz B - não essencial
+	popl %edi
 	popl %ecx
 	pushl $mensagem_matriz_preenchida_b
 	call printf
@@ -582,12 +550,7 @@ mostranumC:
 	addl $4, %esp
 
 
-leNomeArquivoSaida:
-	movl $0, %eax
-	movl $0, %ebx
-	movl $0, %ecx
-	movl $0, %edx
-
+leituraNomeArquivoSaida:
 	movl SYS_WRITE, %eax
 	movl STD_OUT, %ebx
 	movl $pedearqout, %ecx
@@ -596,30 +559,29 @@ leNomeArquivoSaida:
 
 	movl SYS_READ, %eax
 	movl STD_IN, %ebx
-	movl $arqSaida, %ecx
+	movl $nomearqout, %ecx
 	movl $50, %edx # le inclusive o enter
 	int $0x80
 
-	movl $arqSaida, %edi
-	call tratanomearq
-	jmp escrevearqout
-
+	movl $nomearqout, %edi
+	call tratamentoNomeArquivoSaida
+	jmp escritaNomeArquivoSaida
 	
-tratanomearq:
+tratamentoNomeArquivoSaida:
 	pushl %edi #empilha a posicao inicial da string do nome
 	movl $-1, %ebx
 
-volta3:
+retornoTratamento:
 	addl $1, %ebx
 	movb (%edi), %al
 	cmpb enter, %al
-	jz concluinomearq
+	jz finalizaNomeArquivoSaida
 	cmpb espaco, %al
-	jz concluinomearq
+	jz finalizaNomeArquivoSaida
 	addl $1, %edi
-	jmp volta3
+	jmp retornoTratamento
 
-concluinomearq:
+finalizaNomeArquivoSaida:
 	pushl %edi #empilha a posicao do caracter enter/espaco
 	pushl %ebx
 	pushl $mostratam
@@ -640,9 +602,9 @@ concluinomearq:
 
 	ret
 	
-escrevearqout:
+escritaNomeArquivoSaida:
 	movl SYS_OPEN, %eax
-	movl $arqSaida, %ebx
+	movl $nomearqout, %ebx
 	movl O_WRONLY, %ecx
 	orl O_CREATE, %ecx
 	movl S_IRUSR, %edx
@@ -661,7 +623,7 @@ escrevearqout:
 	popl %ebx
 	int $0x80
 	
-	jmp escrevematrizsaida
+	jmp fim
 	
 quebraLinhamatrizSaida:
 	pushl %ecx
@@ -681,7 +643,7 @@ escrevematrizsaida:
 	pushl %edx
 	pushl %ebp
 	pushl %ecx
-	
+		
 	finit
 	fldl (%ebp)
 	subl  $8, %esp
@@ -693,7 +655,7 @@ escrevematrizsaida:
 		
 	movl SYS_WRITE, %eax
 	movl $ponteiro, %ecx
-	movl $4, %edx
+	movl $8, %edx
 	int $0x80
 
 	movl SYS_WRITE, %eax
@@ -712,8 +674,8 @@ escrevematrizsaida:
 	
 	loop escrevematrizsaida
 	
-	ret	
-
+	ret
+	
 fim:
 	pushl $quebra_linha
 	call printf
